@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
-  resources :restaurants
+  resources :restaurants do
+    resources :cocktails
+  end
+
   get 'restaurants/index'
 
   root 'welcome#index'
