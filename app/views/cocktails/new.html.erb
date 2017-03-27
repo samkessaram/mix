@@ -1,0 +1,35 @@
+<%= form_for @cocktail do |f| %>
+
+  <%= hidden_field_tag :restaurant_id, @restaurant.id %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    Ingredients
+  </p>
+  <div id="ingredients">
+    <%= f.fields_for @ingredient do |ingredient| %>
+      <%= render 'ingredients/ingredient_fields', f: ingredient %>
+
+      <div class="links">
+        <%= link_to_add_association 'add ingredient', f, :ingredients %>
+      </div>
+
+    <% end %>
+  </div>
+
+  <%= f.fields_for :steps do |step| %>
+    <%= render 'steps/steps_fields', f: step %>
+
+    <div class="links">
+      <%= link_to_add_association 'add step', f, :steps %>
+    </div>
+    
+  <% end %>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

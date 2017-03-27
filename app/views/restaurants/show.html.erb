@@ -1,4 +1,19 @@
-<h1><%= @restaurant.name %></h1>
-<p><%= link_to 'Edit', edit_restaurant_path %></p>
-<p><%= link_to 'Delete', restaurant_path(@restaurant), method: :delete, data: {confirm: 'Delete ' + @restaurant.name + '?'} %></p>
-<small><%= link_to 'Back', restaurants_path %></small>
+<% content_for(:title, @restaurant.name ) %>
+
+<div class="row">
+  <div class="small-12 columns">
+    <h2><%= @restaurant.name %></h2>
+    <p><%= link_to 'Edit', edit_restaurant_path %></p>
+    <p><%= link_to 'Delete', restaurant_path(@restaurant), method: :delete, data: {confirm: 'Delete ' + @restaurant.name + '?'} %></p>
+    <p><%= link_to 'Back', restaurants_path %></p>
+
+    <h2>Cocktails</h2>
+    <% @restaurant.cocktails.each do |cocktail| %>
+      <p>
+        <%= cocktail.name %>
+      </p>
+    <% end %>
+
+    <%= link_to 'Add Cocktail', new_cocktail_path(:restaurant_id => @restaurant.id) %>
+  </div>
+</div>
