@@ -11,7 +11,7 @@
   </p>
   <div id="ingredients">
     <%= f.fields_for @ingredient do |ingredient| %>
-      <%= render 'ingredients/ingredient_fields', f: ingredient %>
+      <%= render 'ingredient_fields', f: ingredient %>
 
       <div class="links">
         <%= link_to_add_association 'add ingredient', f, :ingredients %>
@@ -20,8 +20,8 @@
     <% end %>
   </div>
 
-  <%= f.fields_for :steps do |step| %>
-    <%= render 'steps/steps_fields', f: step %>
+  <%= f.fields_for @step do |step| %>
+    <%= render 'step_fields', f: step %>
 
     <div class="links">
       <%= link_to_add_association 'add step', f, :steps %>
